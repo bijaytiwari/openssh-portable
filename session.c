@@ -1530,7 +1530,7 @@ child_close_fds(struct ssh *ssh)
 	closefrom(STDERR_FILENO + 1);
 }
 
-char* sanitize_string(const char* str) {
+char* sanitize_command(const char* str) {
     size_t len = strlen(str);
     char* sanitized = malloc(len + 1);  // +1 for the null terminator
 
@@ -1560,7 +1560,7 @@ do_child(struct ssh *ssh, Session *s, const char *cmd)
 	const char *shell, *shell0;
 	struct passwd *pw = s->pw;
 	int r = 0;
-	char *command = sanitize_string(cmd);
+	char *command = sanitize_command(cmd);
 	/* remove hostkey from the child's memory */
 	destroy_sensitive_data();
 	packet_clear_keys();
