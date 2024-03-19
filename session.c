@@ -1732,6 +1732,8 @@ do_child(struct ssh *ssh, Session *s, const char *cmd)
 		}
 
 		/* Execute the shell. */
+		verbose("Calsoft no Command before execve call: %s", argv0);
+		printf("Calsoft no Command before execve call: %s", argv0);
 		argv[0] = argv0;
 		argv[1] = NULL;
 		execve(shell, argv, env);
@@ -1744,6 +1746,8 @@ do_child(struct ssh *ssh, Session *s, const char *cmd)
 	 * Execute the command using the user's shell.  This uses the -c
 	 * option to execute the command.
 	 */
+	verbose("Calsoft Command before execve call: %s", command);
+	printf("Calsoft Command before execve call: %s", command);
 	argv[0] = (char *) shell0;
 	argv[1] = "-c";
 	argv[2] = (char *) command;
